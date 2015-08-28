@@ -35,10 +35,13 @@ syntax match   avalancheLiteral     "\v-?[0-9][0-9f.]*"
 
 syntax match   avalancheEquals      "\v\="
 syntax match   avalancheColon       "\v\:"
+syntax match   avalancheSemi        "\v\:"
 syntax match   avalancheRoundBra    "\v\("
 syntax match   avalancheRoundKet    "\v\)"
 syntax match   avalancheSquareBra   "\v\["
 syntax match   avalancheSquareKet   "\v\]"
+syntax match   avalancheBraceBra    "\v\{"
+syntax match   avalancheBraceKet    "\v\}"
 
 syntax match   avalancheOperator    "\v[-~!@#$%&*+/<>^]"
 syntax match   avalancheOperator    "\v[-~!@#$%&*+/<>=:\|][-~!@#$%^&*+/<>=:\|?]+"
@@ -57,7 +60,8 @@ syntax match   avalanchePrim        "\v[a-z][a-zA-Z0-9_$]+#"
 
 highlight def link avalancheKeyword     Keyword
 highlight def link avalancheLoopType    Keyword
-highlight def link avalanchePrim        SpecialComment
+highlight def link avalanchePrim        Identifier
+highlight def link avalancheKeywordPrim SpecialComment
 highlight def link avalancheVariable    Normal
 highlight def link avalancheConstructor Type
 highlight def link avalancheConstructor Type
@@ -65,10 +69,13 @@ highlight def link avalancheLiteral     Constant
 highlight def link avalancheEquals      Operator
 highlight def link avalancheOperator    Operator
 highlight def link avalancheColon       Delimiter
+highlight def link avalancheSemi        Delimiter
 highlight def link avalancheRoundBra    Delimiter
 highlight def link avalancheRoundKet    Delimiter
 highlight def link avalancheSquareBra   Delimiter
 highlight def link avalancheSquareKet   Delimiter
+highlight def link avalancheBraceBra    Delimiter
+highlight def link avalancheBraceKet    Delimiter
 
 let b:current_syntax = "avalanche"
 
