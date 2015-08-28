@@ -35,7 +35,7 @@ syntax match   avalancheLiteral     "\v-?[0-9][0-9f.]*"
 
 syntax match   avalancheEquals      "\v\="
 syntax match   avalancheColon       "\v\:"
-syntax match   avalancheSemi        "\v\:"
+syntax match   avalancheSemi        "\v\;"
 syntax match   avalancheRoundBra    "\v\("
 syntax match   avalancheRoundKet    "\v\)"
 syntax match   avalancheSquareBra   "\v\["
