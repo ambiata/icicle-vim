@@ -1,0 +1,27 @@
+gen$date = DATE
+{
+  init [Latest] [Int] acc$conv$5 = 3 : Int;
+
+  for_facts (elem$gen$fact : Int, elem$gen$date : Date) in history {
+    push acc$conv$5(elem$gen$fact);
+  } 
+  
+  init [Mutable] [Int] acc$c$conv$4 = 0 : Int;
+  load_resumable [Int] acc$c$conv$4;
+
+  for_facts (elem$gen$fact : Int, elem$gen$date : Date) in new {
+    if (gt# [Int] elem$gen$fact (10 : Int)) {
+      read [Mutable] [Int] acc$c$conv$4 = acc$c$conv$4;
+      write acc$c$conv$4 = add# [Int] acc$c$conv$4 (1 : Int);
+    }
+
+    push acc$conv$5(elem$gen$fact);
+  }
+
+  save_resumable [Int] acc$c$conv$4;
+  read [Mutable] [Int] c$conv$4 = acc$c$conv$4;
+  read [Latest] [Int] conv$5 = acc$conv$5;
+
+  let conv$8 = pair# [Int] [Array Int] c$conv$4 conv$5;
+  output repl conv$8;
+}
