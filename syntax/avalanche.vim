@@ -14,6 +14,7 @@ syntax keyword avalancheKeyword     for_ints
 syntax keyword avalancheKeyword     for_facts
 syntax keyword avalancheKeyword     in
 syntax keyword avalancheKeyword     if
+syntax keyword avalancheKeyword     else
 syntax keyword avalancheKeyword     let
 
 syntax keyword avalancheKeywordPrim init
@@ -23,59 +24,73 @@ syntax keyword avalancheKeywordPrim push
 syntax keyword avalancheKeywordPrim output
 syntax keyword avalancheKeywordPrim load_resumable
 syntax keyword avalancheKeywordPrim save_resumable
+syntax keyword avalancheKeywordPrim DATE
 
 syntax keyword avalancheLoopType    history
 syntax keyword avalancheLoopType    new
 
 "
+" Comments
+"
+
+syntax keyword avalancheTodo          TODO FIXME XXX HACK  contained
+syntax match   avalancheCommentLine   "\v\s#.*$"           contains=avalancheTodo,@Spell
+syntax match   avalancheCommentLine   "\v^#.*$"            contains=avalancheTodo,@Spell
+
+"
 " Symbols / Literals
 "
 
-syntax match   avalancheLiteral     "\v-?[0-9][0-9f.]*"
+syntax match   avalancheLiteral       "\v-?[0-9][0-9f.]*"
+syntax region  avalancheString        start=+"+  skip=+\\\\\|\\"+  end=+"+  contains=@Spell
 
-syntax match   avalancheEquals      "\v\="
-syntax match   avalancheColon       "\v\:"
-syntax match   avalancheSemi        "\v\;"
-syntax match   avalancheRoundBra    "\v\("
-syntax match   avalancheRoundKet    "\v\)"
-syntax match   avalancheSquareBra   "\v\["
-syntax match   avalancheSquareKet   "\v\]"
-syntax match   avalancheBraceBra    "\v\{"
-syntax match   avalancheBraceKet    "\v\}"
 
-syntax match   avalancheOperator    "\v[-~!@#$%&*+/<>^]"
-syntax match   avalancheOperator    "\v[-~!@#$%&*+/<>=:\|][-~!@#$%^&*+/<>=:\|?]+"
+syntax match   avalancheEquals        "\v\="
+syntax match   avalancheColon         "\v\:"
+syntax match   avalancheSemi          "\v\;"
+syntax match   avalancheRoundBra      "\v\("
+syntax match   avalancheRoundKet      "\v\)"
+syntax match   avalancheSquareBra     "\v\["
+syntax match   avalancheSquareKet     "\v\]"
+syntax match   avalancheBraceBra      "\v\{"
+syntax match   avalancheBraceKet      "\v\}"
+
+syntax match   avalancheOperator      "\v[-~!@$%&*+/<>^]"
+syntax match   avalancheOperator      "\v[-~!@$%&*+/<>=:\|][-~!@$%^&*+/<>=:\|?]+"
 
 "
 " Identifiers
 "
 
-syntax match   avalancheConstructor "\v[A-Z][a-zA-Z0-9_$]+"
-syntax match   avalancheVariable    "\v[a-z][a-zA-Z0-9_$]+"
-syntax match   avalanchePrim        "\v[a-z][a-zA-Z0-9_$]+#"
+syntax match   avalancheConstructor   "\v[A-Z][a-zA-Z0-9_$]+"
+syntax match   avalancheVariable      "\v[a-z][a-zA-Z0-9_$]+"
+syntax match   avalanchePrim          "\v[a-zA-Z][a-zA-Z0-9_$]+#"
 
 "
 " Highlighting
 "
 
-highlight def link avalancheKeyword     Keyword
-highlight def link avalancheLoopType    Keyword
-highlight def link avalanchePrim        Identifier
-highlight def link avalancheKeywordPrim SpecialComment
-highlight def link avalancheVariable    Normal
-highlight def link avalancheConstructor Type
-highlight def link avalancheConstructor Type
-highlight def link avalancheLiteral     Constant
-highlight def link avalancheEquals      Operator
-highlight def link avalancheOperator    Operator
-highlight def link avalancheColon       Delimiter
-highlight def link avalancheSemi        Delimiter
-highlight def link avalancheRoundBra    Delimiter
-highlight def link avalancheRoundKet    Delimiter
-highlight def link avalancheSquareBra   Delimiter
-highlight def link avalancheSquareKet   Delimiter
-highlight def link avalancheBraceBra    Delimiter
-highlight def link avalancheBraceKet    Delimiter
+highlight def link avalancheKeyword      Keyword
+highlight def link avalancheLoopType     Keyword
+highlight def link avalanchePrim         Identifier
+highlight def link avalancheKeywordPrim  SpecialComment
+highlight def link avalancheVariable     Normal
+highlight def link avalancheConstructor  Type
+highlight def link avalancheConstructor  Type
+highlight def link avalancheLiteral      Constant
+highlight def link avalancheString       String
+highlight def link avalancheEquals       Operator
+highlight def link avalancheOperator     Operator
+highlight def link avalancheColon        Delimiter
+highlight def link avalancheSemi         Delimiter
+highlight def link avalancheRoundBra     Delimiter
+highlight def link avalancheRoundKet     Delimiter
+highlight def link avalancheSquareBra    Delimiter
+highlight def link avalancheSquareKet    Delimiter
+highlight def link avalancheBraceBra     Delimiter
+highlight def link avalancheBraceKet     Delimiter
+highlight def link avalancheCommentLine  Comment
+highlight def link avalancheTodo         Todo
 
 let b:current_syntax = "avalanche"
 
