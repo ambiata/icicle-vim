@@ -1,0 +1,44 @@
+title = "Demonstration dictionary"
+
+version = 1
+
+tombstone = "NA"
+
+[fact.age]
+  encoding="int"
+  tombstone="-"
+
+[fact.salary]
+  encoding="int"
+
+[fact.gender]
+  encoding="string"
+
+[feature.gender]
+  expression = "feature gender ~> newest value"
+
+[fact.injury]
+  namespace="injuries"
+  encoding="""
+    ( location : string
+    , severity : int
+    , refnum   : int
+    , action   : string* )
+  """
+
+[feature.is_head]
+  expression = """
+    feature injury ~> newest (location == "head")
+  """
+
+[feature.mean_salary_3_months]
+  source="salary"
+  expression="""
+    feature salary
+      ~> windowed 3 months
+      ~> mean value
+  """
+
+[deprecated.mean_salary]
+  source="salary"
+  expression="""mean"""
